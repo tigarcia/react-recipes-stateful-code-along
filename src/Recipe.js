@@ -20,13 +20,11 @@ class Recipe extends Component {
     ));
     return (
       <div className="recipe-card">
-        <div className="recipe-title">
-          <h3>{title}</h3>
-        </div>
-        <div className="recipe-img">
+        <div className="recipe-card-img">
           <img src={img} alt={title} />
         </div>
-        <div className="recipe-contents">
+        <div className="recipe-card-content">
+          <h3 class="recipe-title">{title}</h3>
           <h4>Ingredients:</h4>
           <ul>
             {ingredientList}

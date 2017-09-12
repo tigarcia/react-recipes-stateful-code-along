@@ -20,7 +20,7 @@ class App extends Component {
           title: "Milkshake",
           instructions: "Combine ice cream and milk.  Blend until creamy",
           ingredients: ["2 Scoops Ice cream", "8 ounces milk"],
-          img: "milkshake.jpg"
+          img: "http://food.fnr.sndimg.com/content/dam/images/food/fullset/2013/5/1/0/FNM_060113-Almost-Famous-Milkshakes-Recipe_s4x3.jpg.rend.hgtvcom.616.462.suffix/1371616331513.jpeg"
         },
         {
           id: 2,
@@ -57,12 +57,17 @@ class App extends Component {
     return (
       <div>
         <header>
-          <h1>My Recipe Book</h1>
+          <h2><a href="#">Recipe App</a></h2>
+          <nav>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </nav>
         </header>
-        <RecipeInput onSave={this.handleSave} />
         <RecipeList
           onDelete={this.handleDelete}
           recipes={recipes}/>
+        <RecipeInput onSave={this.handleSave} />
       </div>
     )
   }
