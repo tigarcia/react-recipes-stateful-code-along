@@ -7,7 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showForm: true,
+      showForm: false,
       recipes: [
         {
           id: 0,
