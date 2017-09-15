@@ -7,6 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showForm: true,
       recipes: [
         {
           id: 0,
@@ -20,7 +21,7 @@ class App extends Component {
           title: "Milkshake",
           instructions: "Combine ice cream and milk.  Blend until creamy",
           ingredients: ["2 Scoops Ice cream", "8 ounces milk"],
-          img: "http://food.fnr.sndimg.com/content/dam/images/food/fullset/2013/5/1/0/FNM_060113-Almost-Famous-Milkshakes-Recipe_s4x3.jpg.rend.hgtvcom.616.462.suffix/1371616331513.jpeg"
+          img: "milkshake.jpg"
         },
         {
           id: 2,
@@ -42,6 +43,7 @@ class App extends Component {
       const newRecipe = {id: this.state.nextRecipeId, ...recipe};
       return {
         nextRecipeId: prevState.nextRecipeId + 1,
+        showForm: false,
         recipes: [...this.state.recipes, newRecipe]
       };
     });
@@ -53,21 +55,31 @@ class App extends Component {
   }
 
   render() {
-    const {recipes} = this.state;
+    const {recipes, showForm} = this.state;
     return (
       <div>
         <header>
-          <h2><a href="#">Recipe App</a></h2>
+          <h2><a>Recipe App</a></h2>
           <nav>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li>
+              <a onClick={() => this.setState({showForm: true})}>
+                New Recipe
+              </a>
+            </li>
+            <li><a>Home</a></li>
+            <li><a>About</a></li>
+            <li><a>Contact Us</a></li>
           </nav>
         </header>
+        {showForm ?
+          <RecipeInput
+            onSave={this.handleSave}
+            onClose={() => this.setState({showForm: false})}
+          /> :
+          undefined}
         <RecipeList
           onDelete={this.handleDelete}
           recipes={recipes}/>
-        <RecipeInput onSave={this.handleSave} />
       </div>
     )
   }
